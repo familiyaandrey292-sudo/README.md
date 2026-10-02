@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       
       - name: Archive previous version
         run: |
@@ -26,11 +26,16 @@ jobs:
             exit 0
           fi
           
-          # Получаем дату и время по МСК в безопасном формате
+          # Получаем дату ПОСЛЕДНЕГО ИЗМЕНЕНИЯ файла RULES.md (создание текущей версии)
           export TZ='Europe/Moscow'
-          TIMESTAMP=$(date +"%Y.%m.%d_%H-%M-%S")
+          TIMESTAMP=$(git log -1 --format=%cd --date=format:'%Y.%m.%d_%H-%M-%S' HEAD~1 -- RULES.md)
           
-          # Сохраняем предыдущую версию
+          # Если это первый коммит файла (нет истории)
+          if [ -z "$TIMESTAMP" ]; then
+            TIMESTAMP=$(date +"%Y.%m.%d_%H-%M-%S")
+          fi
+          
+          # Сохраняем предыдущую версию с датой её создания
           git show HEAD~1:RULES.md > "archive/rules/RULES_${TIMESTAMP}.md"
           
           git config user.name "github-actions[bot]"
