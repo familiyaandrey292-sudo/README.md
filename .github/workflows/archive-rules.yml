@@ -1,0 +1,40 @@
+name: Archive RULES.md
+
+on:
+  push:
+    paths:
+      - 'RULES.md'
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Archive previous version
+        run: |
+          mkdir -p archive/rules
+          
+          # Проверяем, изменился ли файл
+          if git diff --quiet HEAD~1 HEAD -- RULES.md; then
+            echo "RULES.md не изменился"
+            exit 0
+          fi
+          
+          # Получаем дату и время по МСК в безопасном формате
+          export TZ='Europe/Moscow'
+          TIMESTAMP=$(date +"%Y.%m.%d_%H-%M-%S")
+          
+          # Сохраняем предыдущую версию
+          git show HEAD~1:RULES.md > "archive/rules/RULES_${TIMESTAMP}.md"
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add archive/rules/
+          git commit -m "Archive RULES.md ${TIMESTAMP}"
+          git push
