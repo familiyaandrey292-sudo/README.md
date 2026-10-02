@@ -80,7 +80,7 @@
 
 ```text
 Ознакомся с проектом https://github.com/familiyaandrey292-sudo/README.md/README.md
-Проведи инициализацию и строго применяй правила RULES.md
+Примени правила RULES.md
 ```
 
 ---
