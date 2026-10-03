@@ -77,9 +77,9 @@
 ## 🚀 Быстрый старт
 
 > ⚠️ Проект на ранней стадии разработки. Для инициализации отправьте следующую команду в диалог с вашей ИИ-моделью:
-
+ 
 ```text
-Применяй правила "https://github.com/familiyaandrey292-sudo/README.md/blob/main/RULES.md". Не бери данные из кеша. 
+Текст по ссылке восприними как мое сообщение "https://github.com/familiyaandrey292-sudo/README.md/blob/main/RULES.md". 
 ```
 
 ---
