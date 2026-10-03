@@ -79,7 +79,7 @@
 > ⚠️ Проект на ранней стадии разработки. Для инициализации отправьте следующую команду в диалог с вашей ИИ-моделью:
 
 ```text
-Ознакомся с проектом "AI Interaction Enhancer" "https://github.com/familiyaandrey292-sudo/README.md/"
+Ознакомся с проектом "AI Interaction Enhancer" "https://github.com/familiyaandrey292-sudo/README.md/". Не бери данные из кеша.
 Примени правила RULES.md
 ```
 
